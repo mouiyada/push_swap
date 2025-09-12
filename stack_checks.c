@@ -6,7 +6,7 @@
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:54:41 by kyamada           #+#    #+#             */
-/*   Updated: 2025/09/10 15:54:42 by kyamada          ###   ########.fr       */
+/*   Updated: 2025/09/11 21:16:21 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,20 @@ void	assign_indices(t_stack *stack)
 		if (min)
 			min->index = index++;
 	}
+}
+
+int	is_sorted(t_stack *stack)
+{
+	t_node	*cur;
+
+	if (stack->size < 2)
+		return (1);
+	cur = stack->top;
+	while (cur->next)
+	{
+		if (cur->value > cur->next->value)
+			return (0);
+		cur = cur->next;
+	}
+	return (1);
 }

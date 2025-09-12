@@ -6,7 +6,7 @@
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:39:06 by kyamada           #+#    #+#             */
-/*   Updated: 2025/09/10 16:14:16 by kyamada          ###   ########.fr       */
+/*   Updated: 2025/09/11 21:42:06 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,18 @@ int	find_max_index_pos(t_stack *b)
 static void	move_chunk_to_b(t_stack *a, t_stack *b, int start, int end)
 {
 	int	moved;
+	int	median;
 
 	moved = 0;
+	median = start + (end - start) / 2;
 	while (moved < end - start)
 	{
 		if (a->top->index >= start && a->top->index < end)
 		{
-			pb (a, b);
+			pb(a, b);
 			moved++;
+			if (b->top->index < median)
+				rb(b);
 		}
 		else
 			ra(a);
@@ -89,7 +93,7 @@ void	chunk_sort(t_stack *a, t_stack *b)
 	if (size <= 100)
 		num_chunks = 5;
 	else
-		num_chunks = 12;
+		num_chunks = 10;
 	chunk_size = size / num_chunks;
 	chunk_start = 0;
 	while (chunk_start < size)

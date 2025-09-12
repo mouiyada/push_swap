@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 15:58:24 by kyamada           #+#    #+#             */
-/*   Updated: 2025/09/10 15:59:19 by kyamada          ###   ########.fr       */
+/*   Created: 2025/09/11 21:14:51 by kyamada           #+#    #+#             */
+/*   Updated: 2025/09/11 21:17:58 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,19 @@ long	ft_atol(const char *str)
 	return (res * sign);
 }
 
-int	ft_isdigit(int c)
+void	free_split_args(char **args)
 {
-	return (c >= '0' && c <= '9');
+	int	i;
+
+	if (!args)
+		return ;
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
 }
 
 int	is_valid_number(char *str)
@@ -43,6 +53,8 @@ int	is_valid_number(char *str)
 		return (0);
 	if (str[i] == '-' || str[i] == '+')
 		i++;
+	if (!str[i])
+		return (0);
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

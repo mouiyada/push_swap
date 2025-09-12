@@ -6,7 +6,7 @@
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 15:37:34 by kyamada           #+#    #+#             */
-/*   Updated: 2025/09/10 15:48:15 by kyamada          ###   ########.fr       */
+/*   Updated: 2025/09/11 21:05:53 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# include "libft/libft.h"
 
 typedef struct s_node
 {
@@ -33,15 +34,16 @@ typedef struct s_stack
 }	t_stack;
 
 long	ft_atol(const char *str);
-int		ft_isdigit(int c);
 int		is_valid_number(char *str);
 t_stack	*create_stack(void);
 t_node	*create_node(int value);
 void	add_node_bottom(t_stack *stack, t_node *new);
-int		init_stack_from_args(t_stack *stack, int argc, char **argv);
+int		init_stack(t_stack *stack, int argc, char **argv);
 void	free_stack(t_stack *stack);
 int		has_duplicates(t_stack *stack);
 void	assign_indices(t_stack *stack);
+int		is_sorted(t_stack *stack);
+void	free_split_args(char **args);
 void	swap(t_stack *stack);
 void	push(t_stack *from, t_stack *to);
 void	rotate(t_stack *stack);

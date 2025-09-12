@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyamada <kyamada@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 15:54:50 by kyamada           #+#    #+#             */
-/*   Updated: 2025/09/10 15:58:15 by kyamada          ###   ########.fr       */
+/*   Created: 2025/09/11 21:16:31 by kyamada           #+#    #+#             */
+/*   Updated: 2025/09/11 21:16:34 by kyamada          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,18 +57,18 @@ void	add_node_bottom(t_stack *stack, t_node *new)
 	stack->size++;
 }
 
-int	init_stack_from_args(t_stack *stack, int argc, char **argv)
+int	init_stack(t_stack *stack, int count, char **args)
 {
 	int		i;
 	long	num;
 	t_node	*node;
 
-	i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < count)
 	{
-		if (!is_valid_number(argv[i]))
+		if (!is_valid_number(args[i]))
 			return (0);
-		num = ft_atol(argv[i]);
+		num = ft_atol(args[i]);
 		if (num < INT_MIN || num > INT_MAX)
 			return (0);
 		node = create_node((int)num);
